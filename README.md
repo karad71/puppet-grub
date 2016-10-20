@@ -68,10 +68,6 @@ grup::password: grub.pbkdf2.sha512.10000.$SOMHEHASH
 
 * [`grub`](#class-grub)
 
-#### Private Classes
-
-* [`grub::params`](#class-grubparams)
-
 #### Class: `grub`
 
 Main class, includes all other classes
