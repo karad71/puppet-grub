@@ -1,0 +1,25 @@
+{
+  "name": "icann-grub",
+  "version": "0.1.0",
+  "author": "john.bond@icann.org",
+  "summary": "small modules to install grub",
+  "license": "MPL-2.0",
+  "source": "https://github.com/icann-dns/puppet-grub",
+  "project_page": "https://github.com/icann-dns/puppet-grub",
+  "issues_url": "https://github.com/icann-dns/puppet-grub/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 4.12.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.0.4",
+        "14.04"
+      ]
+    }
+  ]
+}
