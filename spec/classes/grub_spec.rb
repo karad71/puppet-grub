@@ -41,18 +41,17 @@ describe 'grub' do
       describe 'check default config' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class('grub') }
-        
         it do
           is_expected.to contain_exec('update_grub').with(
             'command' => '/usr/sbin/update-grub',
-            'refreshonly' => true,
+            'refreshonly' => true
           )
         end
         it { is_expected.to contain_file('/etc/default').with_ensure('directory') }
         it do
           is_expected.to contain_file('/etc/default/grub').with(
             'ensure' => 'present',
-            'notify' => 'Exec[update_grub]',
+            'notify' => 'Exec[update_grub]'
           ).with_content(
             %r{GRUB_CMDLINE_LINUX="rootdelay=90 apparmor=0 console=tty0 console=ttyS1,115200n8"}
           ).with_content(
@@ -69,7 +68,7 @@ describe 'grub' do
           is_expected.to contain_file('/etc/grub.d/10_linux').with(
             'ensure' => 'present',
             'mode' => '0755',
-            'notify' => 'Exec[update_grub]',
+            'notify' => 'Exec[update_grub]'
           ).without_content(
             %r{GRUB_PROTECT_BOOT=""}
           ).with_content(
@@ -83,7 +82,7 @@ describe 'grub' do
         it do
           is_expected.to contain_file('/etc/grub.d/01_superuser').with(
             'ensure' => 'absent',
-            'notify' => 'Exec[update_grub]',
+            'notify' => 'Exec[update_grub]'
           )
         end
       end
@@ -93,7 +92,7 @@ describe 'grub' do
           it do
             is_expected.to contain_file('/etc/default/grub').with(
               'ensure' => 'present',
-              'notify' => 'Exec[update_grub]',
+              'notify' => 'Exec[update_grub]'
             ).without_content(
               %r{GRUB_CMDLINE_LINUX="rootdelay=90 apparmor=0 console=tty0 console=ttyS1,115200n8"}
             ).without_content(
@@ -132,7 +131,7 @@ describe 'grub' do
             is_expected.to contain_file('/etc/grub.d/01_superuser').with(
               'ensure' => 'present',
               'mode' => '0755',
-              'notify' => 'Exec[update_grub]',
+              'notify' => 'Exec[update_grub]'
             ).with_content(
               %r{/bin/cat << EOF}
             ).with_content(
@@ -153,7 +152,7 @@ describe 'grub' do
             is_expected.to contain_file('/etc/grub.d/10_linux').with(
               'ensure' => 'present',
               'mode' => '0755',
-              'notify' => 'Exec[update_grub]',
+              'notify' => 'Exec[update_grub]'
             ).with_content(
               %r{GRUB_PROTECT_BOOT=""}
             ).without_content(
@@ -168,7 +167,7 @@ describe 'grub' do
             is_expected.to contain_file('/etc/grub.d/10_linux').with(
               'ensure' => 'present',
               'mode' => '0755',
-              'notify' => 'Exec[update_grub]',
+              'notify' => 'Exec[update_grub]'
             ).with_content(
               %r{GRUB_PROTECT_ADVANCED=""}
             ).without_content(
