@@ -81,4 +81,4 @@ Main class, includes all other classes
 
 ## Limitations
 
-This module is tested on Ubuntu 12.04, and 14.04
+This module is tested on Ubuntu 14.04, and 16.04
