@@ -18,13 +18,11 @@ class grub (
     content => template('grub/etc/default/grub.erb'),
     notify  => Exec['update_grub'],
   }
-  if $::lsbdistcodename == 'trusty' {
-    file {'/etc/grub.d/10_linux':
-      ensure  => present,
-      mode    => '0755',
-      content => template('grub/etc/grub.d/10_linux.erb'),
-      notify  => Exec['update_grub'],
-    }
+  file {'/etc/grub.d/10_linux':
+    ensure  => present,
+    mode    => '0755',
+    content => template('grub/etc/grub.d/10_linux.erb'),
+    notify  => Exec['update_grub'],
   }
   if $user and $password {
     file { '/etc/grub.d/01_superuser':
