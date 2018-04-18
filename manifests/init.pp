@@ -10,9 +10,6 @@ class grub (
     command     => '/usr/sbin/update-grub',
     refreshonly => true,
   }
-  file {'/etc/default':
-    ensure => directory,
-  }
   file {'/etc/default/grub':
     ensure  => present,
     content => template('grub/etc/default/grub.erb'),
