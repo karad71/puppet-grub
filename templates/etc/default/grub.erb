@@ -2,8 +2,14 @@
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=3
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
-# scope['enable_iommu'] testing
-<%= scope['enable_iommu'] -%>
+# var testing
+# raw at sign: <%= @enable_iommu %>
+# at sign chk: <% if @enable_iommu %>true<% else %>false<% end %>
+# at sign ==: <% if @enable_iommu == true %>true<% else %>false<% end %>
+# raw scope: <%= scope['enable_iommu'] %>
+# scope: <% if scope['enable_iommu'] == true %>true<% else %>false<% end %>
+# raw lookupvar: <%= scope.lookupvar('puppet_grub::enable_iommu') %>
+# lookupvar: <% if scope.lookupvar('puppet_grub::enable_iommu') == true %>true<% else %>false<% end %>
 <% if @enable_iommu == true -%>
 GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on"
 <% else -%>

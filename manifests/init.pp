@@ -5,7 +5,7 @@ class grub (
   Optional[String] $password         = undef,
   Boolean          $protect_boot     = false,
   Boolean          $protect_advanced = false,
-  Boolean	   $enable_iommu     = false,
+  Boolean           $enable_iommu     = false,
 ) {
   exec {'update_grub':
     command     => '/usr/sbin/update-grub',
