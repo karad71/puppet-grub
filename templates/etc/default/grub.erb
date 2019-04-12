@@ -2,21 +2,13 @@
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=3
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
-# var testing
-# raw at sign: <%= @enable_iommu %>
-# at sign chk: <% if @enable_iommu %>true<% else %>false<% end %>
-# at sign ==: <% if @enable_iommu == true %>true<% else %>false<% end %>
-# raw scope: <%= scope['enable_iommu'] %>
-# scope: <% if scope['enable_iommu'] == true %>true<% else %>false<% end %>
-# raw lookupvar: <%= scope.lookupvar('puppet_grub::enable_iommu') %>
-# lookupvar: <% if scope.lookupvar('puppet_grub::enable_iommu') == true %>true<% else %>false<% end %>
 <% if @enable_iommu == true -%>
 GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on"
 <% else -%>
 GRUB_CMDLINE_LINUX_DEFAULT=""
 <% end -%>
 <% unless @virtual == "vmware" then -%>
-GRUB_CMDLINE_LINUX="rootdelay=90 apparmor=0 console=tty0 console=ttyS1,115200n8"
+GRUB_CMDLINE_LINUX="rootdelay=90 apparmor=0 console=tty0 console=ttyS1,115200n8<% if @huge_pages == true %> <%= @_huge_page_line %><% end %>"
 GRUB_TERMINAL="serial"
 GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=1 --word=8 --parity=no --stop=1"
 <% else -%>

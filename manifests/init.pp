@@ -1,16 +1,19 @@
 # == Class: grub
 #
 class grub (
-  Optional[String] $user             = undef,
-  Optional[String] $password         = undef,
-  Boolean          $protect_boot     = false,
-  Boolean          $protect_advanced = false,
+  Optional[String]  $user             = undef,
+  Optional[String]  $password         = undef,
+  Boolean           $protect_boot     = false,
+  Boolean           $protect_advanced = false,
   Boolean           $enable_iommu     = false,
+  Boolean           $huge_pages       = false,
+  Optional[Integer] $num_huge_pages   = undef,
 ) {
   exec {'update_grub':
     command     => '/usr/sbin/update-grub',
     refreshonly => true,
   }
+  $_huge_page_line = "default_hugepagesz=1G hugepagesz=1G hugepages=$num_huge_pages"
   file {'/etc/default/grub':
     ensure  => present,
     content => template('grub/etc/default/grub.erb'),
