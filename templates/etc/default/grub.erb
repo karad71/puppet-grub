@@ -8,7 +8,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on"
 GRUB_CMDLINE_LINUX_DEFAULT=""
 <% end -%>
 <% unless @virtual == "vmware" then -%>
-GRUB_CMDLINE_LINUX="rootdelay=90 apparmor=0 console=tty0 console=ttyS1,115200n8<% if @huge_pages == true %> <%= @_huge_page_line %><% end %>"
+GRUB_CMDLINE_LINUX="rootdelay=90 apparmor=0 console=tty0 console=ttyS1,115200n8<% if @enable_huge_pages == true %> <%= @_huge_page_line %><% end %>"
 GRUB_TERMINAL="serial"
 GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=1 --word=8 --parity=no --stop=1"
 <% else -%>

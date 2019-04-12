@@ -1,13 +1,13 @@
 # == Class: grub
 #
 class grub (
-  Optional[String]  $user             = undef,
-  Optional[String]  $password         = undef,
-  Boolean           $protect_boot     = false,
-  Boolean           $protect_advanced = false,
-  Boolean           $enable_iommu     = false,
-  Boolean           $huge_pages       = false,
-  Optional[Integer] $num_huge_pages   = undef,
+  Optional[String]  $user              = undef,
+  Optional[String]  $password          = undef,
+  Boolean           $protect_boot      = false,
+  Boolean           $protect_advanced  = false,
+  Boolean           $enable_iommu      = false,
+  Boolean           $enable_huge_pages = false,
+  Optional[Integer] $num_huge_pages    = undef,
 ) {
   exec {'update_grub':
     command     => '/usr/sbin/update-grub',
